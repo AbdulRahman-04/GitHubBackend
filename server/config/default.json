@@ -1,0 +1,11 @@
+{
+    "PORT": 5040,
+    "DB_URL": "",
+    "JWT_KEY": "",
+    "USER": "",
+    "PASS": "",
+    "SID": "",
+    "TOKEN": "",
+    "PHONE": "",
+    "SERVER_URL": "http://localhost:5040"
+}
