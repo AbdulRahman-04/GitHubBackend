@@ -6,12 +6,22 @@ import reposRouter from "./controllers/repos/index.js"
 import gistRouter from "./controllers/gists/index.js"
 import publicRouter from "./public/index.js"
 import authMiddleware from "./middleware/auth.js"
+import ratelimit from "express-rate-limit"
 
 const app = express()
 
 const PORT = config.get("PORT")
 
 app.use(express.json());
+
+let limiter = ratelimit({
+    windowMs: 10*60*1000,  //10 min
+    limit: 50,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: "Cannot send request! wait for server to respond!",
+    statusCode: 429
+})
 
 app.get("/home", (req, res)=>{
     try {
@@ -28,6 +38,8 @@ app.get("/home", (req, res)=>{
 // public api's
 app.use("/api/public", publicRouter)
 
+// rate limit
+app.use("/api/public", limiter)
 
 // middleware
 app.use(authMiddleware)
