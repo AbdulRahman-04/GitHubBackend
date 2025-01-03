@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 
-router.post("/creategist", async (req, res)=>{
+router.post("/Creategist", async (req, res)=>{
     try {
 
         let userInp = req.body
@@ -20,7 +20,7 @@ router.post("/creategist", async (req, res)=>{
 
 
 
-router.get("/getall", async (req, res)=>{
+router.get("/api/gists", async (req, res)=>{
     try {
 
         let getAll = await gistModel.find({})
@@ -33,7 +33,7 @@ router.get("/getall", async (req, res)=>{
 });
 
 
-router.get("/getone/:id", async (req, res)=>{
+router.get("/api/gists/:id", async (req, res)=>{
     try {
         let paramsId = req.params.id
         let getOne = await gistModel.find({_id: paramsId})
@@ -45,7 +45,7 @@ router.get("/getone/:id", async (req, res)=>{
     }
 });
 
-router.put("/edit/:id", async (req, res)=>{
+router.put("/api/gists/:id", async (req, res)=>{
     try {
         let paramsId = req.params.id;
         let userInp = req.body;
@@ -58,7 +58,7 @@ router.put("/edit/:id", async (req, res)=>{
     }
 })
 
-router.delete("/deleteone/:id", async (req, res)=>{
+router.delete("/api/gists/:id", async (req, res)=>{
     try {
         let paramsId = req.params.id
         await gistModel.deleteOne({_id: paramsId})

@@ -3,7 +3,7 @@ import userModel from "../../models/Users/Users.js"
 
 const router = express.Router();
 
-router.get("/getall", async (req, res)=>{
+router.get("/createuser", async (req, res)=>{
     try {
 
         let getAll = await userModel.find({})
@@ -16,7 +16,7 @@ router.get("/getall", async (req, res)=>{
 });
 
 
-router.get("/getone/:id", async (req, res)=>{
+router.get("/api/users/:id", async (req, res)=>{
     try {
         let paramsId = req.params.id
         let getOne = await userModel.find({_id: paramsId})
@@ -28,7 +28,7 @@ router.get("/getone/:id", async (req, res)=>{
     }
 });
 
-router.put("/edit/:id", async (req, res)=>{
+router.put("/api/users/:id", async (req, res)=>{
     try {
         let paramsId = req.params.id;
         let userInp = req.body;
@@ -41,7 +41,7 @@ router.put("/edit/:id", async (req, res)=>{
     }
 })
 
-router.delete("/deleteone/:id", async (req, res)=>{
+router.delete("/api/users/:id", async (req, res)=>{
     try {
         let paramsId = req.params.id
         await userModel.deleteOne({_id: paramsId})

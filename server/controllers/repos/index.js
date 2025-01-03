@@ -3,7 +3,7 @@ import reposModel from "../../models/Repos/Repos.js"
 
 const router = express.Router();
 
-router.post("/createrepo", async (req, res)=>{
+router.post("/Createrepo", async (req, res)=>{
     try {
 
         let userInp = req.body
@@ -17,7 +17,7 @@ router.post("/createrepo", async (req, res)=>{
     }
 })
 
-router.get("/getall", async (req, res)=>{
+router.get("/api/repos", async (req, res)=>{
     try {
 
         let getAll = await reposModel.find({})
@@ -30,7 +30,7 @@ router.get("/getall", async (req, res)=>{
 });
 
 
-router.get("/getone/:id", async (req, res)=>{
+router.get("/api/repos/:id", async (req, res)=>{
     try {
         let paramsId = req.params.id
         let getOne = await reposModel.findOne({_id: paramsId})
@@ -42,7 +42,7 @@ router.get("/getone/:id", async (req, res)=>{
     }
 });
 
-router.put("/edit/:id", async (req, res)=>{
+router.put("/api/repos/:id", async (req, res)=>{
     try {
         let paramsId = req.params.id;
         let userInp = req.body;
@@ -55,7 +55,7 @@ router.put("/edit/:id", async (req, res)=>{
     }
 })
 
-router.delete("/deleteone/:id", async (req, res)=>{
+router.delete("/api/repos/:id", async (req, res)=>{
     try {
         let paramsId = req.params.id
         await reposModel.deleteOne({_id: paramsId})
