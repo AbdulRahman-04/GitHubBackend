@@ -1,5 +1,5 @@
 import express from "express"
-import mongoose from "mongoose"
+// import mongoose from "mongoose"
 import config from "config"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
@@ -63,7 +63,7 @@ router.post("/register", async (req, res)=>{
 
         // send link to mobile for verification
         let smsData = {
-            body: `dear user, please verify your email here, ${URL}/api/public/phoneverify/${phoneToken}`,
+            body: `dear user, please verify your phone here, ${URL}/api/public/phoneverify/${phoneToken}`,
             to: phone
         }
 
@@ -125,7 +125,7 @@ router.get("/phoneverify/:token", async (req, res)=>{
           return res.status(200).json({msg: `user phone number already verified!🙌`})  
         }
 
-        // change the userVerified email to true and userVerify token email to null
+        // change the userVerified phone to true and userVerify token phone to null
         user.userVerified.phone = true;
         user.userVerifyToken.phone = null;
 
